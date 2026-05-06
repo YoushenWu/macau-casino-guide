@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>澳門賭場踩點手冊 5/11–5/14</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #7A6130;
+    --dark: #0A0A0E;
+    --dark-card: #12121A;
+    --dark-border: #1E1E2E;
+    --text: #E8E4DC;
+    --text-muted: #7A7870;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { background: var(--dark); color: var(--text); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+
+  header { background: linear-gradient(160deg, #0D0D1A 0%, #1A1200 60%, #0D0D0D 100%); padding: 40px 20px 28px; text-align: center; position: relative; border-bottom: 1px solid var(--gold-dim); overflow: hidden; }
+  header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% -20%, rgba(201,168,76,0.18) 0%, transparent 65%); pointer-events: none; }
+  .header-tag { display: inline-block; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-dim); padding: 3px 10px; border-radius: 2px; margin-bottom: 14px; }
+  header h1 { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 900; letter-spacing: 0.05em; color: var(--gold-light); line-height: 1.3; margin-bottom: 6px; }
+  header p { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; }
+
+  .tab-nav { display: flex; overflow-x: auto; scrollbar-width: none; background: var(--dark-card); border-bottom: 1px solid var(--dark-border); position: sticky; top: 0; z-index: 100; -webkit-overflow-scrolling: touch; }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn { flex: none; padding: 14px 18px; font-size: 12px; font-family: 'Noto Sans TC', sans-serif; font-weight: 500; letter-spacing: 0.05em; color: var(--text-muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .tab-content { display: none; padding: 0 0 80px; }
+  .tab-content.active { display: block; }
+
+  .section-head { padding: 24px 20px 16px; }
+  .section-head::after { content: ''; display: block; height: 1px; background: linear-gradient(90deg, var(--gold-dim), transparent); margin-top: 12px; }
+  .night-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .section-head h2 { font-family: 'Noto Serif TC', serif; font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .section-head .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* MAP BLOCK */
+  .map-block { margin: 0 16px 20px; border-radius: 10px; overflow: hidden; border: 1px solid var(--dark-border); }
+  .map-header { background: rgba(201,168,76,0.1); border-bottom: 1px solid var(--dark-border); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .map-title { font-size: 12px; font-weight: 500; color: var(--gold); letter-spacing: 0.08em; }
+  .map-nav-btn { display: inline-flex; align-items: center; gap: 5px; background: var(--gold); color: #0A0A0E; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 4px; text-decoration: none; letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .map-block iframe { display: block; width: 100%; height: 260px; border: none; }
+  .map-pins { background: var(--dark-card); padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .map-pin-link { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--gold-light); background: rgba(201,168,76,0.08); border: 1px solid var(--gold-dim); border-radius: 4px; padding: 4px 9px; text-decoration: none; white-space: nowrap; }
+  .map-pin-link:active { background: rgba(201,168,76,0.2); }
+
+  /* CASINO CARD */
+  .casino-card { margin: 0 16px 16px; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; overflow: hidden; }
+  .casino-card-head { padding: 16px 16px 12px; display: flex; align-items: flex-start; gap: 12px; border-bottom: 1px solid var(--dark-border); }
+  .casino-number { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; font-family: 'Noto Serif TC', serif; }
+  .casino-info { flex: 1; }
+  .casino-name { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .casino-name-en { font-size: 11px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.05em; }
+  .time-badge { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+  .time-start { font-size: 15px; font-weight: 500; color: var(--gold); font-family: 'Noto Serif TC', serif; }
+  .time-dur { font-size: 10px; color: var(--text-muted); letter-spacing: 0.05em; }
+  .casino-stats { display: flex; padding: 10px 16px; border-bottom: 1px solid var(--dark-border); }
+  .stat-item { flex: 1; text-align: center; padding: 4px 0; }
+  .stat-item + .stat-item { border-left: 1px solid var(--dark-border); }
+  .stat-val { font-size: 16px; font-weight: 700; font-family: 'Noto Serif TC', serif; color: var(--gold-light); }
+  .stat-label { font-size: 9px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .casino-notes { padding: 12px 16px; }
+  .note-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; }
+  .note-item { font-size: 13px; color: var(--text); padding: 4px 0 4px 14px; position: relative; line-height: 1.5; }
+  .note-item::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 6px; }
+
+  .transit-row { margin: 0 16px 8px; background: rgba(201,168,76,0.07); border: 1px dashed var(--gold-dim); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .transit-icon { font-size: 18px; flex-shrink: 0; }
+  .transit-text { font-size: 12px; color: var(--gold-light); line-height: 1.5; }
+  .transit-text strong { display: block; font-size: 13px; margin-bottom: 1px; }
+
+  .warn-box { margin: 0 16px 16px; background: rgba(192,57,43,0.1); border: 1px solid rgba(192,57,43,0.35); border-radius: 8px; padding: 12px 14px; display: flex; gap: 10px; }
+  .warn-icon { font-size: 18px; flex-shrink: 0; }
+  .warn-text { font-size: 12px; color: #E88; line-height: 1.6; }
+  .warn-text strong { display: block; margin-bottom: 2px; color: #EAA; }
+
+  .info-box { margin: 0 16px 16px; background: rgba(41,128,185,0.1); border: 1px solid rgba(41,128,185,0.3); border-radius: 8px; padding: 12px 14px; display: flex; gap: 10px; }
+  .info-icon { font-size: 18px; flex-shrink: 0; }
+  .info-text { font-size: 12px; color: #8CC; line-height: 1.6; }
+  .info-text strong { display: block; margin-bottom: 2px; color: #AAE; }
+
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px 16px 0; }
+  .ov-card { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 8px; padding: 14px 12px; }
+  .ov-night { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+  .ov-date { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .ov-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .ov-stops { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+  .ov-stop { font-size: 10px; background: rgba(201,168,76,0.12); border: 1px solid var(--gold-dim); border-radius: 3px; padding: 2px 6px; color: var(--gold-light); }
+
+  .table-wrap { margin: 16px 16px 0; overflow-x: auto; border-radius: 8px; border: 1px solid var(--dark-border); }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { background: rgba(201,168,76,0.12); color: var(--gold); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px; text-align: left; font-weight: 500; white-space: nowrap; }
+  td { padding: 9px 10px; border-top: 1px solid var(--dark-border); color: var(--text); vertical-align: middle; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+  .rank-1 { color: var(--gold-light); font-weight: 700; font-family: 'Noto Serif TC', serif; }
+  .badge-zone { display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: 500; letter-spacing: 0.05em; }
+  .zone-cotai { background: rgba(39,174,96,0.2); color: #6EE; border: 1px solid rgba(39,174,96,0.4); }
+  .zone-peninsula { background: rgba(142,68,173,0.2); color: #D4A; border: 1px solid rgba(142,68,173,0.4); }
+
+  .tips-section { padding: 16px 16px 0; }
+  .tip-item { display: flex; gap: 12px; margin-bottom: 12px; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 8px; padding: 12px 14px; }
+  .tip-num { width: 24px; height: 24px; background: var(--gold-dim); color: var(--dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .tip-body { flex: 1; }
+  .tip-title { font-size: 13px; font-weight: 500; color: var(--gold-light); margin-bottom: 3px; }
+  .tip-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  .ext-link { display: flex; align-items: center; gap: 10px; margin: 0 16px 10px; background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.05)); border: 1px solid var(--gold-dim); border-radius: 8px; padding: 13px 16px; text-decoration: none; color: var(--gold-light); font-size: 13px; }
+  .ext-link span { flex: 1; }
+  .ext-link em { font-size: 11px; color: var(--text-muted); font-style: normal; display: block; margin-top: 2px; }
+
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--dark-border), transparent); margin: 8px 16px 20px; }
+
+  .day1 .casino-number { background: rgba(142,68,173,0.2); color: #C77DFF; border: 1px solid rgba(142,68,173,0.4); }
+  .day2 .casino-number { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid var(--gold-dim); }
+  .day3 .casino-number { background: rgba(39,174,96,0.15); color: #6EE; border: 1px solid rgba(39,174,96,0.4); }
+  .day4 .casino-number { background: rgba(41,128,185,0.15); color: #7BE; border: 1px solid rgba(41,128,185,0.4); }
+
+  footer { text-align: center; padding: 20px; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; border-top: 1px solid var(--dark-border); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">業務踩點手冊</div>
+  <h1>澳門賭場研究<br>五月出差行程</h1>
+  <p>5/11–5/14 ・ 19:00–23:00 ・ 10人團</p>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview',this)">總覽</button>
+  <button class="tab-btn" onclick="showTab('day1',this)">5/11 半島</button>
+  <button class="tab-btn" onclick="showTab('day2',this)">5/12 金光大道</button>
+  <button class="tab-btn" onclick="showTab('day3',this)">5/13 新濠</button>
+  <button class="tab-btn" onclick="showTab('day4',this)">5/14 銀河系</button>
+  <button class="tab-btn" onclick="showTab('tips',this)">注意事項</button>
+</nav>
+
+<!-- ══ OVERVIEW ══ -->
+<div class="tab-content active" id="tab-overview">
+  <div class="section-head">
+    <div class="night-label">四晚行程總覽</div>
+    <h2>策略分區踩點</h2>
+    <p class="sub">半島 vs 路氹城，分兩區各自集中</p>
+  </div>
+
+  <div class="map-block">
+    <div class="map-header">
+      <span class="map-title">🗺️ 四晚踩點全覽</span>
+      <a class="map-nav-btn" href="https://www.google.com/maps/search/casinos+in+Macau/@22.165,113.553,13z" target="_blank">📍 開啟地圖</a>
+    </div>
+    <iframe src="https://maps.google.com/maps?q=22.165,113.553&z=13&output=embed" allowfullscreen loading="lazy"></iframe>
+    <div class="map-pins">
+      <a class="map-pin-link" href="https://maps.google.com/?q=Wynn+Macau" target="_blank">📍 Wynn Macau</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=MGM+Macau" target="_blank">📍 MGM</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=Casino+Lisboa+Macau" target="_blank">📍 葡京</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=The+Parisian+Macao" target="_blank">📍 巴黎人</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=The+Londoner+Macao" target="_blank">📍 倫敦人</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=The+Venetian+Macao" target="_blank">📍 威尼斯人</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=City+of+Dreams+Macau" target="_blank">📍 新濠天地</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=Studio+City+Macau" target="_blank">📍 新濠影匯</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=Galaxy+Macau" target="_blank">📍 銀河</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=Wynn+Palace+Macau" target="_blank">📍 永利皇宮</a>
+    </div>
+  </div>
+
+  <div class="overview-grid">
+    <div class="ov-card">
+      <div class="ov-night">Day 1 · 5/11</div>
+      <div class="ov-date">澳門半島夜踩</div>
+      <div class="ov-desc">高端定位，步行串聯</div>
+      <div class="ov-stops"><span class="ov-stop">Wynn★</span><span class="ov-stop">MGM</span><span class="ov-stop">葡京</span></div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-night">Day 2 · 5/12</div>
+      <div class="ov-date">金光大道三連</div>
+      <div class="ov-desc">室內廊橋不出戶</div>
+      <div class="ov-stops"><span class="ov-stop">巴黎人</span><span class="ov-stop">倫敦人</span><span class="ov-stop">威尼斯人</span></div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-night">Day 3 · 5/13</div>
+      <div class="ov-date">新濠集團巡禮</div>
+      <div class="ov-desc">電影主題＋水舞間</div>
+      <div class="ov-stops"><span class="ov-stop">新濠天地</span><span class="ov-stop">新濠影匯</span></div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-night">Day 4 · 5/14</div>
+      <div class="ov-date">銀河系收尾</div>
+      <div class="ov-desc">同品牌雙館對比</div>
+      <div class="ov-stops"><span class="ov-stop">銀河</span><span class="ov-stop">永利皇宮</span></div>
+    </div>
+  </div>
+
+  <div class="table-wrap" style="margin-top:20px;">
+    <table>
+      <thead><tr><th>賭場</th><th>角子機</th><th>賭桌</th><th>區域</th></tr></thead>
+      <tbody>
+        <tr><td><span class="rank-1">威尼斯人</span></td><td style="color:var(--gold-light);font-weight:700;">6,000</td><td>870</td><td><span class="badge-zone zone-cotai">路氹城</span></td></tr>
+        <tr><td>巴黎人</td><td>2,500</td><td>400</td><td><span class="badge-zone zone-cotai">路氹城</span></td></tr>
+        <tr><td>倫敦人</td><td>～2,000</td><td>350</td><td><span class="badge-zone zone-cotai">路氹城</span></td></tr>
+        <tr><td>新濠天地</td><td>1,500</td><td>500</td><td><span class="badge-zone zone-cotai">路氹城</span></td></tr>
+        <tr><td>永利皇宮</td><td>1,280</td><td>420</td><td><span class="badge-zone zone-cotai">路氹城</span></td></tr>
+        <tr><td>銀河</td><td>～1,200</td><td>500</td><td><span class="badge-zone zone-cotai">路氹城</span></td></tr>
+        <tr><td>MGM Macau</td><td>888</td><td>385</td><td><span class="badge-zone zone-peninsula">澳門半島</span></td></tr>
+        <tr><td>葡京</td><td>700+</td><td>240</td><td><span class="badge-zone zone-peninsula">澳門半島</span></td></tr>
+        <tr><td>新濠影匯</td><td>400+</td><td>400+</td><td><span class="badge-zone zone-cotai">路氹城</span></td></tr>
+        <tr><td>Wynn Macau</td><td style="color:#C77DFF;">375</td><td>500</td><td><span class="badge-zone zone-peninsula">澳門半島</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="padding:8px 16px 16px;font-size:11px;color:var(--text-muted);">※ Wynn Macau 375台機台 vs 500張賭桌，是研究「高端品牌如何取捨機台比例」最佳樣本。</div>
+</div>
+
+<!-- ══ DAY 1 ══ -->
+<div class="tab-content day1" id="tab-day1">
+  <div class="section-head">
+    <div class="night-label">第一晚 · 5/11（週日）</div>
+    <h2>澳門半島夜踩</h2>
+    <p class="sub">Wynn Macau 主角 ・ 步行串聯三館</p>
+  </div>
+
+  <div class="map-block">
+    <div class="map-header">
+      <span class="map-title">🗺️ 半島踩點路線</span>
+      <a class="map-nav-btn" href="https://www.google.com/maps/dir/Wynn+Macau,+Macau/MGM+Macau/Casino+Lisboa,+Macau" target="_blank">▶ 開啟導航</a>
+    </div>
+    <iframe src="https://maps.google.com/maps?q=Wynn+Macau&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
+    <div class="map-pins">
+      <a class="map-pin-link" href="https://maps.google.com/?q=Wynn+Macau" target="_blank">📍 ① Wynn Macau</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=MGM+Macau" target="_blank">📍 ② MGM Macau</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=Casino+Lisboa+Macau" target="_blank">📍 ③ 葡京</a>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-icon">🚌</div>
+    <div class="warn-text"><strong>出發：18:30 從巴黎人搭接駁車</strong>搭 Wynn 系列或 MGM 免費接駁車前往半島，晚間班次稀少，務必準時！</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">①</div>
+      <div class="casino-info"><div class="casino-name">永利澳門</div><div class="casino-name-en">Wynn Macau</div></div>
+      <div class="time-badge"><div class="time-start">19:00</div><div class="time-dur">停留 50 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">375</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">500</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">★本晚主角</div><div class="stat-label">重點</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察</div>
+      <div class="note-item">機台區規模小但高端——機台與賭桌的空間比例如何反映品牌定位</div>
+      <div class="note-item">表演湖噴泉夜景（每15分鐘）——非博彩體驗如何強化客戶留駐</div>
+      <div class="note-item">機台品牌識別、螢幕尺寸、座椅規格</div>
+      <div class="note-item">客群年齡層與穿著——高端客群行為模式</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚶</div>
+    <div class="transit-text"><strong>步行至 MGM Macau（約 3–5 分鐘）</strong>19:55 抵達</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">②</div>
+      <div class="casino-info"><div class="casino-name">澳門美高梅</div><div class="casino-name-en">MGM Macau</div></div>
+      <div class="time-badge"><div class="time-start">19:55</div><div class="time-dur">停留 35 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">888</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">385</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">天幕廣場</div><div class="stat-label">特色</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察</div>
+      <div class="note-item">天幕廣場自然採光——晚間燈光與機台區視覺整合</div>
+      <div class="note-item">16間私人貴賓室如何影響公共機台配置</div>
+      <div class="note-item">與 Wynn Macau 對比：同半島高端定位，機台策略差異</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚶</div>
+    <div class="transit-text"><strong>步行至葡京（約 8–10 分鐘）</strong>20:35 抵達</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">③</div>
+      <div class="casino-info"><div class="casino-name">葡京賭場</div><div class="casino-name-en">Casino Lisboa</div></div>
+      <div class="time-badge"><div class="time-start">20:35</div><div class="time-dur">停留 35 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">700+</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">240</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">1970年</div><div class="stat-label">創立</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察</div>
+      <div class="note-item">澳門最老牌賭場，鳥籠外觀地標</div>
+      <div class="note-item">老機台與新機台混用比例——翻新策略觀察</div>
+      <div class="note-item">半島客群 vs 路氹城客群行為差異</div>
+      <div class="note-item">傳統遊戲（番攤、魚蝦蟹）的機台化程度</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚌</div>
+    <div class="transit-text"><strong>返程：搭 MGM 接駁車回路氹</strong>MGM Macau → MGM Cotai，再步行至巴黎人</div>
+  </div>
+  <div class="warn-box">
+    <div class="warn-icon">⚠️</div>
+    <div class="warn-text"><strong>葡京接駁車須房卡，不可搭乘</strong>返程一律搭 MGM 接駁線，或計程車（10人約 2–3 台，MOP 80–120）。</div>
+  </div>
+</div>
+
+<!-- ══ DAY 2 ══ -->
+<div class="tab-content day2" id="tab-day2">
+  <div class="section-head">
+    <div class="night-label">第二晚 · 5/12（週一）</div>
+    <h2>金光大道三連</h2>
+    <p class="sub">室內廊橋全程不出戶 ・ 巴黎人→倫敦人→威尼斯人</p>
+  </div>
+
+  <div class="map-block">
+    <div class="map-header">
+      <span class="map-title">🗺️ 金光大道三連路線</span>
+      <a class="map-nav-btn" href="https://www.google.com/maps/dir/The+Parisian+Macao/The+Londoner+Macao/The+Venetian+Macao" target="_blank">▶ 開啟導航</a>
+    </div>
+    <iframe src="https://maps.google.com/maps?q=The+Venetian+Macao&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
+    <div class="map-pins">
+      <a class="map-pin-link" href="https://maps.google.com/?q=The+Parisian+Macao" target="_blank">📍 ① 巴黎人</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=The+Londoner+Macao" target="_blank">📍 ② 倫敦人</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=The+Venetian+Macao" target="_blank">📍 ③ 威尼斯人</a>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-icon">🏛️</div>
+    <div class="info-text"><strong>三館室內廊橋相連</strong>全程不需出戶，步行轉移每次約 8 分鐘。</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">①</div>
+      <div class="casino-info"><div class="casino-name">巴黎人賭場</div><div class="casino-name-en">The Parisian Macao</div></div>
+      <div class="time-badge"><div class="time-start">19:00</div><div class="time-dur">停留 50 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">2,500</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">400</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">住宿地</div><div class="stat-label">備注</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察（自家賭場地毯式踩點）</div>
+      <div class="note-item">4大主題區各區機台品牌分布差異</div>
+      <div class="note-item">記錄品牌：Aristocrat、IGT、Konami、Everi</div>
+      <div class="note-item">螢幕方向（直/橫）、介面語言選項</div>
+      <div class="note-item">走道寬度、動線、Jackpot 顯示屏位置</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚶</div>
+    <div class="transit-text"><strong>室內廊橋→倫敦人（約 8 分鐘）</strong>19:58 抵達</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">②</div>
+      <div class="casino-info"><div class="casino-name">倫敦人賭場</div><div class="casino-name-en">The Londoner Macao</div></div>
+      <div class="time-badge"><div class="time-start">19:58</div><div class="time-dur">停留 40 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">～2,000</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">350</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">雙大廳</div><div class="stat-label">格局</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察</div>
+      <div class="note-item">雙大廳格局：娛樂場 vs 名匯娛樂場定位差異</div>
+      <div class="note-item">英式主題燈光對機台區氛圍的影響</div>
+      <div class="note-item">每小時燈光秀是否帶動機台區人流</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚶</div>
+    <div class="transit-text"><strong>室內廊橋→威尼斯人（約 8 分鐘）</strong>20:48 抵達</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">③</div>
+      <div class="casino-info"><div class="casino-name">威尼斯人賭場</div><div class="casino-name-en">The Venetian Macao</div></div>
+      <div class="time-badge"><div class="time-start">20:48</div><div class="time-dur">停留 70 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val" style="color:#FFD700;">6,000</div><div class="stat-label">角子機 🏆</div></div>
+      <div class="stat-item"><div class="stat-val">870</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">全球最大</div><div class="stat-label">規模</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察（最長停留）</div>
+      <div class="note-item">4大主題區機台品牌主題差異</div>
+      <div class="note-item">高流量區使用率 vs 邊緣區對比</div>
+      <div class="note-item">走道寬度與大人潮動線規劃</div>
+      <div class="note-item">新舊機台混搭比例，最新機型集中區域</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DAY 3 ══ -->
+<div class="tab-content day3" id="tab-day3">
+  <div class="section-head">
+    <div class="night-label">第三晚 · 5/13（週二）</div>
+    <h2>新濠集團巡禮</h2>
+    <p class="sub">新濠天地步行→新濠影匯免費接駁</p>
+  </div>
+
+  <div class="map-block">
+    <div class="map-header">
+      <span class="map-title">🗺️ 新濠集團路線</span>
+      <a class="map-nav-btn" href="https://www.google.com/maps/dir/City+of+Dreams+Macau/Studio+City+Macau" target="_blank">▶ 開啟導航</a>
+    </div>
+    <iframe src="https://maps.google.com/maps?q=City+of+Dreams+Macau&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
+    <div class="map-pins">
+      <a class="map-pin-link" href="https://maps.google.com/?q=City+of+Dreams+Macau" target="_blank">📍 ① 新濠天地</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=Studio+City+Macau" target="_blank">📍 ② 新濠影匯</a>
+    </div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">①</div>
+      <div class="casino-info"><div class="casino-name">新濠天地</div><div class="casino-name-en">City of Dreams</div></div>
+      <div class="time-badge"><div class="time-start">19:00</div><div class="time-dur">停留 50 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">1,500</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">500</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">水舞間</div><div class="stat-label">特色</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察</div>
+      <div class="note-item">多酒店整合（頤居、君悅、摩珀斯）的賭場動線設計</div>
+      <div class="note-item">水舞間劇場周邊機台配置——表演後人潮湧入觀察</div>
+      <div class="note-item">摩珀斯藝術感對整體氛圍帶動</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚌</div>
+    <div class="transit-text"><strong>搭新濠免費接駁車→新濠影匯（5–10 分鐘）</strong>20:05 抵達</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">②</div>
+      <div class="casino-info"><div class="casino-name">新濠影匯</div><div class="casino-name-en">Studio City Macau</div></div>
+      <div class="time-badge"><div class="time-start">20:05</div><div class="time-dur">停留 45 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">400+</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">400+</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">電影主題</div><div class="stat-label">特色</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察</div>
+      <div class="note-item">電影主題——是否有更多互動型/體驗型機台？</div>
+      <div class="note-item">年輕客群比例——與威尼斯人、巴黎人客群結構差異</div>
+      <div class="note-item">8字形摩天輪對賭場人流帶動效果</div>
+      <div class="note-item">機台螢幕互動設計、視覺娛樂感呈現方式</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚌</div>
+    <div class="transit-text"><strong>搭接駁車返回巴黎人</strong>約 21:10 出發，21:30 前返回</div>
+  </div>
+</div>
+
+<!-- ══ DAY 4 ══ -->
+<div class="tab-content day4" id="tab-day4">
+  <div class="section-head">
+    <div class="night-label">第四晚 · 5/14（週三）</div>
+    <h2>銀河系收尾</h2>
+    <p class="sub">銀河→永利皇宮 ・ Wynn 同品牌雙館對比</p>
+  </div>
+
+  <div class="map-block">
+    <div class="map-header">
+      <span class="map-title">🗺️ 銀河系路線</span>
+      <a class="map-nav-btn" href="https://www.google.com/maps/dir/Galaxy+Macau/Wynn+Palace+Macau" target="_blank">▶ 開啟導航</a>
+    </div>
+    <iframe src="https://maps.google.com/maps?q=Galaxy+Macau&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
+    <div class="map-pins">
+      <a class="map-pin-link" href="https://maps.google.com/?q=Galaxy+Macau" target="_blank">📍 ① 銀河</a>
+      <a class="map-pin-link" href="https://maps.google.com/?q=Wynn+Palace+Macau" target="_blank">📍 ② 永利皇宮</a>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-icon">🚌</div>
+    <div class="warn-text"><strong>出發：搭接駁車至銀河（約 15 分鐘）</strong>銀河距巴黎人方向相反，需搭免費接駁車，不可步行。</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">①</div>
+      <div class="casino-info"><div class="casino-name">銀河娛樂場</div><div class="casino-name-en">Galaxy Macau</div></div>
+      <div class="time-badge"><div class="time-start">19:00</div><div class="time-dur">停留 50 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">～1,200</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">500</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">孔雀大廳</div><div class="stat-label">地標</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">重點觀察</div>
+      <div class="note-item">孔雀水幕噴泉大廳——非博彩吸引力整合空間體驗方式</div>
+      <div class="note-item">「娛樂之都」VR、模擬賽車等非傳統機台——品牌組成與玩家互動</div>
+      <div class="note-item">銀河 vs 威尼斯人：同樣大型整合渡假村，機台策略差異</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚶</div>
+    <div class="transit-text"><strong>步行→永利皇宮（約 8–10 分鐘）</strong>20:05 抵達</div>
+  </div>
+
+  <div class="casino-card">
+    <div class="casino-card-head">
+      <div class="casino-number">②</div>
+      <div class="casino-info"><div class="casino-name">永利皇宮</div><div class="casino-name-en">Wynn Palace</div></div>
+      <div class="time-badge"><div class="time-start">20:05</div><div class="time-dur">停留 40 分鐘</div></div>
+    </div>
+    <div class="casino-stats">
+      <div class="stat-item"><div class="stat-val">1,280</div><div class="stat-label">角子機</div></div>
+      <div class="stat-item"><div class="stat-val">420</div><div class="stat-label">賭桌</div></div>
+      <div class="stat-item"><div class="stat-val">⭐對比Day1</div><div class="stat-label">研究價值</div></div>
+    </div>
+    <div class="casino-notes">
+      <div class="note-title">⭐ 最高研究價值：同品牌雙館對比</div>
+      <div class="note-item">Wynn Macau（375台/半島）vs Wynn Palace（1,280台/路氹）——同品牌不同市場的機台策略</div>
+      <div class="note-item">花卉主題大廳 vs Wynn Macau 金色美學——品牌視覺語言在地化差異</div>
+      <div class="note-item">路氹 Wynn 是否比半島 Wynn 更大眾化？</div>
+      <div class="note-item">兩館機台型號是否相同——採購策略一致性</div>
+    </div>
+  </div>
+
+  <div class="transit-row">
+    <div class="transit-icon">🚌</div>
+    <div class="transit-text"><strong>返回巴黎人</strong>搭永利皇宮接駁車，或步行至威尼斯人轉乘</div>
+  </div>
+</div>
+
+<!-- ══ TIPS ══ -->
+<div class="tab-content" id="tab-tips">
+  <div class="section-head">
+    <div class="night-label">注意事項</div>
+    <h2>10人團踩點準則</h2>
+    <p class="sub">行動策略 ・ 規範 ・ 返程交通</p>
+  </div>
+
+  <div class="tips-section">
+    <div class="tip-item">
+      <div class="tip-num">1</div>
+      <div class="tip-body"><div class="tip-title">🔇 分組行動，降低辨識度</div><div class="tip-desc">10人一起太顯眼，建議分成 2–3 組各自觀察，LINE 指定各館集合時間與地點。各組分記不同區域。</div></div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">2</div>
+      <div class="tip-body"><div class="tip-title">📵 絕對不能拍照</div><div class="tip-desc">賭場內嚴禁拍照、靠近賭桌不能使用手機。所有記錄只能用紙本或事後口述整理。</div></div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">3</div>
+      <div class="tip-body"><div class="tip-title">💴 提前換幣，不在賭場換</div><div class="tip-desc">賭場內換匯匯率最差，出發前兌換港幣現金。換 500 元面額為佳，100元多數店家不收。</div></div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">4</div>
+      <div class="tip-body"><div class="tip-title">🪪 年齡驗證：滿 21 歲</div><div class="tip-desc">澳門賭場規定年滿 21 歲方可進入，可能需要查驗護照，請隨身攜帶。</div></div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">5</div>
+      <div class="tip-body"><div class="tip-title">🚌 21:00 後接駁班次減少</div><div class="tip-desc">各館接駁 21:00 後改 10–30 分鐘一班。第一晚 Wynn Macau 往氹仔末班約 20:45，葡京接駁須房卡不可搭。</div></div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">6</div>
+      <div class="tip-body"><div class="tip-title">🎯 機台觀察清單</div><div class="tip-desc">每間記錄：①品牌（Aristocrat/IGT/Konami/Everi）②螢幕方向（直/橫）③介面語言 ④最低投注 ⑤機台密度 ⑥客群年齡與使用率</div></div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">7</div>
+      <div class="tip-body"><div class="tip-title">🚕 計程車備案</div><div class="tip-desc">10人分乘 2–3 台：半島→路氹約 MOP 100–150/台，路氹內約 MOP 50–80/台。</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-head">
+    <div class="night-label">各館接駁車官網</div>
+    <h2>出發前確認班次</h2>
+  </div>
+
+  <a class="ext-link" href="https://www.wynnresortsmacau.com/en/shuttle-bus" target="_blank">
+    <span>🎰 永利澳門／永利皇宮接駁車時刻表<em>wynnresortsmacau.com</em></span><span>→</span>
+  </a>
+  <a class="ext-link" href="https://hk.parisianmacao.com/about-us/getting-here.html" target="_blank">
+    <span>🗼 巴黎人（金沙集團）接駁車時刻表<em>parisianmacao.com</em></span><span>→</span>
+  </a>
+  <a class="ext-link" href="https://www.mgm.mo/zh-hant/macau" target="_blank">
+    <span>🦁 澳門美高梅接駁車資訊<em>mgm.mo</em></span><span>→</span>
+  </a>
+  <a class="ext-link" href="https://www.cityofdreamsmacau.com/en/getting-here" target="_blank">
+    <span>💫 新濠天地接駁車資訊<em>cityofdreamsmacau.com</em></span><span>→</span>
+  </a>
+</div>
+
+<footer>
+  澳門賭場踩點手冊 ・ 5/11–5/14 ・ 僅供業務研究參考<br>
+  請遵守當地法律，未滿 21 歲不得進入娛樂場
+</footer>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
